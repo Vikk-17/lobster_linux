@@ -1,0 +1,14 @@
+# Making of desktop application and copy this file to
+# ~/.local/share/applications and change its permission
+# also copy this file to the desktop
+# then at desktop enable launching
+
+[Desktop Entry]
+ Encoding=UTF-8
+ Name=XAMPP Control Panel
+ Comment=Start and Stop XAMPP
+ Exec=sudo /opt/lampp/manager-linux-x64.run
+ Icon=/opt/lampp/htdocs/favicon.ico
+ Categories=Application
+ Type=Application
+ Terminal=true

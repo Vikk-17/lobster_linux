@@ -1,0 +1,10 @@
+# Nativefier:~
+# It's a command line tool to easily create desktop app
+# for any website with minimal fuss.
+
+1. sudo apt install nodejs
+2. sudo apt install npm
+3. sudo snap install nativefier
+4. npm i nativefier
+5. nativefier "https://read.amazon.in/kindle-library"
+

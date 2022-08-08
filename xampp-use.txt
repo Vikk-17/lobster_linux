@@ -1,0 +1,16 @@
+# Install - xampp
+-----------------
+1. sudo chmod 755 xampp*.run
+2. sudo ./xampp-*.run
+3. Now it is installed in /opt/lampp/ directory
+
+# How to use xampp in linux:
+---------------------------
+1. cli> /opt/lampp/xampp start|stop|reload|restart
+2. help page: sudo /opt/lampp/xampp
+3. gui> /opt/lampp/maager-linus-x64.run
+4. link> http://localhost | http://localhost/phpmyadmin
+
+# Otherwise create a desktop application and use it
+
+# Official link:https://www.apachefriends.org | https://www.apachefriends.org/faq_linux.html 
