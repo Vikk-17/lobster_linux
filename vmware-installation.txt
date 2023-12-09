@@ -1,0 +1,49 @@
+VMWARE Workstation Installation
+-------------------------------
+# Problem: "Cannot open /dev/vmmon: No such file or directory" error when powering on a VM 
+
+$ chmod a+x <file>.bundle
+$ sudo ./<file>.bundle
+
+$ sudo vmware-modconfig --console --install-all
++- You will see that there are issues with monitor and net, that's ok.
+
++- Generate a key
++- Run OpenSSL:
+$ openssl req -new -x509 -newkey rsa:2048 -keyout VMWARE15.priv -outform DER -out VMWARE15.der -nodes -days 36500 -subj "/CN=VMWARE/"
++- You will see info that it did ok.
+
+
++- Use this key we just generated to sign the two kernel modules.
+$ sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./VMWARE15.priv ./VMWARE15.der $(modinfo -n vmmon)
+$ sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./VMWARE15.priv ./VMWARE15.der $(modinfo -n vmnet)
++- This does not give any feedback
+
+
++- Check that signature are applied correctly
+$ tail $(modinfo -n vmmon) | grep "Module signature appended"
++- You should get Binary file (standard input) matches
+
+
++- Now we make this key trusted by importing it to machine owener key(MOK)
+management system with command below.
+$ sudo mokutil --import VMWARE15.der
++- This will ask you for a password, enter some new password a bit long
+like vmware2001. Reenter the password.
+
+
++- Reboot. When reboot you should be presented with a menu with the blue
+screen background, you have to make a way to enroll the key and enter
+the password you just created, this happens only once, then continue to
+boot.
+
+
++- To test the dirver/ moudle installed correctly enter the command
+$ mokutil --test-key VMWARE15.der
++- You should get VMWARE15.der is already enrolled and that means VMWare
+should be working.
+	
+
++- Source: 
+https://askubuntu.com/questions/1096052/vmware-15-error-on-ubuntu-18-4-could-not-open-dev-vmmon-no-such-file-or-dire
+https://kb.vmware.com/s/article/2146460
