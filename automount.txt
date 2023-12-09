@@ -1,0 +1,40 @@
+1.Locate the name of your drive
+
+  $ lsblk
+  +- In the output of that command, you should see entries.
+  +- Get the disk name for eg: sda or sdb or nvme0n1p5 or whatever.
+
+2. Create a mount point
+
+  +- The mount point will be the directory on your primary drive
+  that will serve as a location you will access the secondary
+  drive from
+  +- This does not copy or move the files from one to other but,
+  rather creates a place for the operating system to "mount" the
+  secondary drive. Let's create a mount point called lets say 
+  $ mkdir /media/data  -> or whatever place you want.
+  +- Now open /etc/fstab with editor and at the bottom of that
+  file write the following:
+
+  <drive> <mount_point> <file_system> <defults> <dump> <fsck>
+
+  /dev/sdb /media/data ntfs defaults 0 0 
+  
+  
+  +- /dev/sdb -> the drive you want to mount
+  +- /media/data -> the mount point
+  +- ntfs -> file system
+  +- defaults -> uses the defaults options
+  +- 0 0 -> these fields are for dump and fsck. Just leave
+  them both as zeros.
+  
+
+  +- Save the file and close.
+
+3. Testing the mount
+
+  +- All you need to do to test the mount is issue the command.
+  $ mount -a
+  +- If you receive no feedback, everything is good. You can now
+  reboot your machine and the secondary drive will be automatically
+  mounted so you can access the files from /media/data.
