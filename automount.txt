@@ -1,6 +1,8 @@
 1.Locate the name of your drive
 
+  ```
   $ lsblk
+  ```
   +- In the output of that command, you should see entries.
   +- Get the disk name for eg: sda or sdb or nvme0n1p5 or whatever.
 
