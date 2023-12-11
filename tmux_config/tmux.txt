@@ -1,0 +1,96 @@
++- Install Tmux 
+----------------
+  $ apt install tmux 
+  +- Or download from https://github.com/tmux/tmux/wiki/Installing
+
+  
++- Install tpm (Tmux plugin manager) - https://github.com/tmux-plugins/tpm
+or
++-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+-----------------
+|+- ~/.tmux.conf |
+-----------------
+
+unbind r
+bind r source-file ~/.tmux.conf
+
+set -g prefix C-s
+
+
+# act like vim
+setw -g mode-keys vi
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @plugin 'dracula/tmux'
+
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'github_username/plugin_name#branch'
+# set -g @plugin 'git@github.com:user/plugin'
+# set -g @plugin 'git@bitbucket.com:user/plugin'
+
+
+set -g @dracula-show-powerline true
+set -g @dracula-fixed-location "Bangalore"
+set -g @dracla-plugins "weather"
+set -g @dracula-show-flags true
+set -g @dracula-show-left-icon session
+set -g status-position top
+
+# Initialize TMUX plugin manager (keep this line ar the very buttom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+
+
+------------------------------------------
+
++- Type this in terminal if tmux is already running
+$ tmux source ~/.tmux.conf
++- That't it.
+
+
++- Install plugins
+------------------
+  1. Add new plugin to ~/.tmux.conf with set -g @plugin '...'
+  2. Press prefix + I (capital, as in Install) to fetch the plugin.
+  +- You are good to go! The plugin was cloned to ~/.tmux/plugins/ dir and
+  sourced.
+
++- Uninstalling plugins
+-----------------------
+  1. Remove the plugin from the list or comment out.
+  2. Press prfix + alt + u (lowercase as in uninstall) to remove the plugin.
+  +- All the plugins are installed to ~/.tmux/plugins/ so alternatively you can
+  find plugin dir there and remvve it.
+
+
++- Key bindings
+---------------
+  a. prefix + I 
+    +- Installs new plugins from github or any other git repository
+    +- Refresh TMUX environment.
+
+  b. prefix + u 
+    +- Update plugin(s)
+
+  c. prefix + alt + u 
+    +- Remove/uninstall plugins not on ther plugin list.
+
+
++- Plugins
+-------------------
+  a. List of plugins
+    > https://github.com/tmux-plugins/list
+  
+  b. How to create Tmux plugins
+    > https://github.com/tmux-plugins/tpm/blob/master/docs/how_to_create_plugin.md
+
+
