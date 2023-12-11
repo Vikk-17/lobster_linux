@@ -1,0 +1,29 @@
+Upgrading device firmaware from the command line
+------------------------------------------------
+
++- To update device firmaware, you can run the following command
+  $ fwupdmgr update
+
+
++- Longer version
+-----------------
+None of the commands mentioned here required root access.
+  $ sudo apt install fwupd 
+
+  +- You can get a list of devices that support firmaware updates with
+  fwupdmgr by running the fwupdmgr get-devices command
+
+  $ fwupdmgr get-devices
+
+  +- You can also get the status of the devices if they have an available
+  firmaware update by running fwupdmgr get-updates
+
+  $ fwupdmgr get-updates
+
+  +- Once you satisfied, then run the following command to install all available
+  updates or manually pass the device ids of the devices you want to be updated
+  to that command
+
+  $ fwupdmgr update <device ID>
+  or
+  $ fwupdmgr update -> to update all
